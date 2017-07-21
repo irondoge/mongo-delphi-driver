@@ -326,86 +326,86 @@ interface
 
     { Convert an Int64 to a Double.  Some loss of precision may occur. }
     function Int64toDouble(i64 : int64) : double;
-      cdecl; external 'mongoc.dll' name 'bson_int64_to_double';
+      cdecl; external name 'bson_int64_to_double';
 
 implementation
   uses SysUtils, Variants;
 
-  procedure set_bson_err_handler(err_handler : Pointer); cdecl; external 'mongoc.dll';
+  procedure set_bson_err_handler(err_handler : Pointer); cdecl; external;
 
-  function bson_create() : Pointer;  cdecl; external 'mongoc.dll';
-  procedure bson_init(b : Pointer);  cdecl; external 'mongoc.dll';
-  procedure bson_destroy(b : Pointer); cdecl; external 'mongoc.dll';
-  procedure bson_dispose(b : Pointer); cdecl; external 'mongoc.dll';
-  procedure bson_copy(dest : Pointer; src : Pointer); cdecl; external 'mongoc.dll';
-  function bson_finish(b : Pointer) : Integer; cdecl; external 'mongoc.dll';
-  procedure bson_oid_gen(oid : Pointer); cdecl; external 'mongoc.dll';
-  procedure bson_oid_to_string(oid : Pointer; s : PAnsiChar); cdecl; external 'mongoc.dll';
-  procedure bson_oid_from_string(oid : Pointer; s : PAnsiChar); cdecl; external 'mongoc.dll';
+  function bson_create() : Pointer;  cdecl; external;
+  procedure bson_init(b : Pointer);  cdecl; external;
+  procedure bson_destroy(b : Pointer); cdecl; external;
+  procedure bson_dispose(b : Pointer); cdecl; external;
+  procedure bson_copy(dest : Pointer; src : Pointer); cdecl; external;
+  function bson_finish(b : Pointer) : Integer; cdecl; external;
+  procedure bson_oid_gen(oid : Pointer); cdecl; external;
+  procedure bson_oid_to_string(oid : Pointer; s : PAnsiChar); cdecl; external;
+  procedure bson_oid_from_string(oid : Pointer; s : PAnsiChar); cdecl; external;
   function bson_append_string(b : Pointer; name : PAnsiChar; value : PAnsiChar) : Integer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function bson_append_code(b : Pointer; name : PAnsiChar; value : PAnsiChar) : Integer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function bson_append_symbol(b : Pointer; name : PAnsiChar; value : PAnsiChar) : Integer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function bson_append_int(b : Pointer; name : PAnsiChar; value : Integer) : Integer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function bson_append_long(b : Pointer; name : PAnsiChar; value : Int64) : Integer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function bson_append_double(b : Pointer; name : PAnsiChar; value : Double) : Integer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function bson_append_date(b : Pointer; name : PAnsiChar; value : Int64) : Integer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function bson_append_bool(b : Pointer; name : PAnsiChar; value : Boolean) : Integer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function bson_append_null(b : Pointer; name : PAnsiChar) : Integer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function bson_append_undefined(b : Pointer; name : PAnsiChar) : Integer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function bson_append_start_object(b : Pointer; name : PAnsiChar) : Integer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function bson_append_start_array(b : Pointer; name : PAnsiChar) : Integer;
-    cdecl; external 'mongoc.dll';
-  function bson_append_finish_object(b : Pointer) : Integer; cdecl; external 'mongoc.dll';
-  function bson_append_oid(b : Pointer; name : PAnsiChar; oid : Pointer) : Integer; cdecl; external 'mongoc.dll';
+    cdecl; external;
+  function bson_append_finish_object(b : Pointer) : Integer; cdecl; external;
+  function bson_append_oid(b : Pointer; name : PAnsiChar; oid : Pointer) : Integer; cdecl; external;
   function bson_append_code_w_scope(b : Pointer; name : PAnsiChar; code : PAnsiChar; scope : Pointer) : Integer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function bson_append_regex(b : Pointer; name : PAnsiChar; pattern : PAnsiChar; options : PAnsiChar) : Integer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function bson_append_timestamp2(b : Pointer; name : PAnsiChar; time : Integer; increment : Integer) : Integer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function bson_append_binary(b : Pointer; name : PAnsiChar; kind : Byte; data : Pointer; len : Integer) : Integer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function bson_append_bson(b : Pointer; name : PAnsiChar; value : Pointer) : Integer;
-    cdecl; external 'mongoc.dll';
-  function bson_buffer_size(b : Pointer) : Integer; cdecl; external 'mongoc.dll';
-  function bson_size(b : Pointer) : Integer; cdecl; external 'mongoc.dll';
-  function bson_iterator_create() : Pointer; cdecl; external 'mongoc.dll';
-  procedure bson_iterator_dispose(i : Pointer); cdecl; external 'mongoc.dll';
-  procedure bson_iterator_init(i : Pointer; b : Pointer); cdecl; external 'mongoc.dll';
+    cdecl; external;
+  function bson_buffer_size(b : Pointer) : Integer; cdecl; external;
+  function bson_size(b : Pointer) : Integer; cdecl; external;
+  function bson_iterator_create() : Pointer; cdecl; external;
+  procedure bson_iterator_dispose(i : Pointer); cdecl; external;
+  procedure bson_iterator_init(i : Pointer; b : Pointer); cdecl; external;
   function bson_find(i : Pointer; b : Pointer; name : PAnsiChar) : TBsonType;
-    cdecl; external 'mongoc.dll';
-  function bson_iterator_type(i : Pointer) : TBsonType; cdecl; external 'mongoc.dll';
-  function bson_iterator_next(i : Pointer) : TBsonType; cdecl; external 'mongoc.dll';
-  function bson_iterator_key(i : Pointer) : PAnsiChar; cdecl; external 'mongoc.dll';
-  function bson_iterator_double(i : Pointer) : Double; cdecl; external 'mongoc.dll';
-  function bson_iterator_long(i : Pointer) : Int64; cdecl; external 'mongoc.dll';
-  function bson_iterator_int(i : Pointer) : Integer; cdecl; external 'mongoc.dll';
-  function bson_iterator_bool(i : Pointer) : Boolean; cdecl; external 'mongoc.dll';
-  function bson_iterator_string(i : Pointer) : PAnsiChar; cdecl; external 'mongoc.dll';
-  function bson_iterator_date(i : Pointer) : Int64; cdecl; external 'mongoc.dll';
+    cdecl; external;
+  function bson_iterator_type(i : Pointer) : TBsonType; cdecl; external;
+  function bson_iterator_next(i : Pointer) : TBsonType; cdecl; external;
+  function bson_iterator_key(i : Pointer) : PAnsiChar; cdecl; external;
+  function bson_iterator_double(i : Pointer) : Double; cdecl; external;
+  function bson_iterator_long(i : Pointer) : Int64; cdecl; external;
+  function bson_iterator_int(i : Pointer) : Integer; cdecl; external;
+  function bson_iterator_bool(i : Pointer) : Boolean; cdecl; external;
+  function bson_iterator_string(i : Pointer) : PAnsiChar; cdecl; external;
+  function bson_iterator_date(i : Pointer) : Int64; cdecl; external;
   procedure bson_iterator_subiterator(i : Pointer; sub : Pointer);
-    cdecl; external 'mongoc.dll';
-  function bson_iterator_oid(i : Pointer) : Pointer; cdecl; external 'mongoc.dll';
-  function bson_iterator_code(i : Pointer) : PAnsiChar; cdecl; external 'mongoc.dll';
-  procedure bson_iterator_code_scope(i : Pointer; b : Pointer); cdecl; external 'mongoc.dll';
-  function bson_iterator_regex(i : Pointer) : PAnsiChar; cdecl; external 'mongoc.dll';
-  function bson_iterator_regex_opts(i : Pointer) : PAnsiChar; cdecl; external 'mongoc.dll';
-  function bson_iterator_timestamp_time(i : Pointer) : Integer; cdecl; external 'mongoc.dll';
-  function bson_iterator_timestamp_increment(i : Pointer) : Integer; cdecl; external 'mongoc.dll';
-  function bson_iterator_bin_len(i : Pointer) : Integer;  cdecl; external 'mongoc.dll';
-  function bson_iterator_bin_type(i : Pointer) : Byte;  cdecl; external 'mongoc.dll';
-  function bson_iterator_bin_data(i : Pointer) : Pointer;  cdecl; external 'mongoc.dll';
+    cdecl; external;
+  function bson_iterator_oid(i : Pointer) : Pointer; cdecl; external;
+  function bson_iterator_code(i : Pointer) : PAnsiChar; cdecl; external;
+  procedure bson_iterator_code_scope(i : Pointer; b : Pointer); cdecl; external;
+  function bson_iterator_regex(i : Pointer) : PAnsiChar; cdecl; external;
+  function bson_iterator_regex_opts(i : Pointer) : PAnsiChar; cdecl; external;
+  function bson_iterator_timestamp_time(i : Pointer) : Integer; cdecl; external;
+  function bson_iterator_timestamp_increment(i : Pointer) : Integer; cdecl; external;
+  function bson_iterator_bin_len(i : Pointer) : Integer;  cdecl; external;
+  function bson_iterator_bin_type(i : Pointer) : Byte;  cdecl; external;
+  function bson_iterator_bin_data(i : Pointer) : Pointer;  cdecl; external;
 
 
   constructor TBsonOID.Create();
@@ -466,7 +466,7 @@ implementation
 
   function TBsonIterator.key() : string;
   begin
-    Result := string(System.UTF8ToWideString(bson_iterator_key(handle)));
+    Result := string(bson_iterator_key(handle));
   end;
 
   function TBsonIterator.value() : Variant;
@@ -479,7 +479,7 @@ implementation
       bsonEOO, bsonNULL : Result := Null;
       bsonDOUBLE: Result := bson_iterator_double(handle);
       bsonSTRING, bsonCODE, bsonSYMBOL:
-          Result := string(System.UTF8ToWideString(bson_iterator_string(handle)));
+          Result := string(bson_iterator_string(handle));
       bsonINT: Result := bson_iterator_int(handle);
       bsonBOOL: Result := bson_iterator_bool(handle);
       bsonDATE: begin
@@ -590,7 +590,7 @@ implementation
     j := 0;
     SetLength(Result, count);
     while i.next() do begin
-      Result[j] := System.UTF8ToWideString(i.value());
+      Result[j] := i.value();
       inc(j);
     end;
   end;

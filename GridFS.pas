@@ -185,46 +185,46 @@ implementation
   uses
     SysUtils;
 
-  function gridfs_create() : Pointer; cdecl; external 'mongoc.dll';
-  procedure gridfs_dispose(g : Pointer); cdecl; external 'mongoc.dll';
+  function gridfs_create() : Pointer; cdecl; external;
+  procedure gridfs_dispose(g : Pointer); cdecl; external;
   function gridfs_init(c : Pointer; db : PAnsiChar; prefix : PAnsiChar; g : Pointer) : Integer;
-    cdecl; external 'mongoc.dll';
-  procedure gridfs_destroy(g : Pointer); cdecl; external 'mongoc.dll';
+    cdecl; external;
+  procedure gridfs_destroy(g : Pointer); cdecl; external;
   function gridfs_store_file(g : Pointer; filename : PAnsiChar; remoteName : PAnsiChar; contentType : PAnsiChar) : Integer;
-    cdecl; external 'mongoc.dll';
-  procedure gridfs_remove_filename(g : Pointer; remoteName : PAnsiChar); cdecl; external 'mongoc.dll';
+    cdecl; external;
+  procedure gridfs_remove_filename(g : Pointer; remoteName : PAnsiChar); cdecl; external;
   function gridfs_store_buffer(g : Pointer; p : Pointer; size : Int64; remoteName : PAnsiChar; contentType : PAnsiChar) : Integer;
-    cdecl; external 'mongoc.dll';
-  function gridfile_create() : Pointer; cdecl; external 'mongoc.dll';
-  procedure gridfile_dispose(gf : Pointer); cdecl; external 'mongoc.dll';
+    cdecl; external;
+  function gridfile_create() : Pointer; cdecl; external;
+  procedure gridfile_dispose(gf : Pointer); cdecl; external;
   procedure gridfile_writer_init(gf : Pointer; gfs : Pointer; remoteName : PAnsiChar; contentType : PAnsiChar);
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   procedure gridfile_write_buffer(gf : Pointer; data : Pointer; length : Int64);
-    cdecl; external 'mongoc.dll';
-  function gridfile_writer_done(gf : Pointer) : Integer; cdecl; external 'mongoc.dll';
+    cdecl; external;
+  function gridfile_writer_done(gf : Pointer) : Integer; cdecl; external;
   function gridfs_find_query(g : Pointer; query : Pointer; gf : Pointer) : Integer;
-    cdecl; external 'mongoc.dll';
-  procedure gridfile_destroy(gf : Pointer); cdecl; external 'mongoc.dll';
-  function gridfile_get_filename(gf : Pointer) : PAnsiChar; cdecl; external 'mongoc.dll';
-  function gridfile_get_chunksize(gf : Pointer) : Integer; cdecl; external 'mongoc.dll';
-  function gridfile_get_contentlength(gf : Pointer) : Int64; cdecl; external 'mongoc.dll';
-  function gridfile_get_contenttype(gf : Pointer) : PAnsiChar; cdecl; external 'mongoc.dll';
-  function gridfile_get_uploaddate(gf : Pointer) : Int64; cdecl; external 'mongoc.dll';
-  function gridfile_get_md5(gf : Pointer) : PAnsiChar; cdecl; external 'mongoc.dll';
-  procedure gridfile_get_metadata(gf : Pointer; b : Pointer); cdecl; external 'mongoc.dll';
-  function bson_create() : Pointer; cdecl; external 'mongoc.dll';
-  procedure bson_dispose(b : Pointer); cdecl; external 'mongoc.dll';
-  function bson_size(b : Pointer) : Integer; cdecl; external 'mongoc.dll';
-  procedure bson_copy(dest : Pointer; src : Pointer); cdecl; external 'mongoc.dll';
-  function gridfile_get_numchunks(gf : Pointer) : Integer; cdecl; external 'mongoc.dll';
-  procedure gridfile_get_descriptor(gf : Pointer; b : Pointer); cdecl; external 'mongoc.dll';
-  procedure gridfile_get_chunk(gf : Pointer; i : Integer; b : Pointer); cdecl; external 'mongoc.dll';
+    cdecl; external;
+  procedure gridfile_destroy(gf : Pointer); cdecl; external;
+  function gridfile_get_filename(gf : Pointer) : PAnsiChar; cdecl; external;
+  function gridfile_get_chunksize(gf : Pointer) : Integer; cdecl; external;
+  function gridfile_get_contentlength(gf : Pointer) : Int64; cdecl; external;
+  function gridfile_get_contenttype(gf : Pointer) : PAnsiChar; cdecl; external;
+  function gridfile_get_uploaddate(gf : Pointer) : Int64; cdecl; external;
+  function gridfile_get_md5(gf : Pointer) : PAnsiChar; cdecl; external;
+  procedure gridfile_get_metadata(gf : Pointer; b : Pointer); cdecl; external;
+  function bson_create() : Pointer; cdecl; external;
+  procedure bson_dispose(b : Pointer); cdecl; external;
+  function bson_size(b : Pointer) : Integer; cdecl; external;
+  procedure bson_copy(dest : Pointer; src : Pointer); cdecl; external;
+  function gridfile_get_numchunks(gf : Pointer) : Integer; cdecl; external;
+  procedure gridfile_get_descriptor(gf : Pointer; b : Pointer); cdecl; external;
+  procedure gridfile_get_chunk(gf : Pointer; i : Integer; b : Pointer); cdecl; external;
   function gridfile_get_chunks(gf : Pointer; i : Integer; count : Integer) : Pointer;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function gridfile_read(gf : Pointer; size : Int64; buf : Pointer) : Int64;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
   function gridfile_seek(gf : Pointer; offset : Int64) : Int64;
-    cdecl; external 'mongoc.dll';
+    cdecl; external;
 
   
   constructor TGridFS.Create(mongo: TMongo; db: string; prefix : string);
@@ -360,7 +360,7 @@ implementation
 
   function TGridfile.getFilename() : string;
   begin
-    Result := string(System.UTF8ToWideString(gridfile_get_filename(handle)));
+    Result := string(gridfile_get_filename(handle));
   end;
 
   function TGridfile.getChunkSize() : Integer;
@@ -375,7 +375,7 @@ implementation
 
   function TGridfile.getContentType() : string;
   begin
-    Result := string(System.UTF8ToWideString(gridfile_get_contenttype(handle)));
+    Result := string(gridfile_get_contenttype(handle));
   end;
 
   function TGridfile.getUploadDate() : TDateTime;

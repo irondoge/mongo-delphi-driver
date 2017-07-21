@@ -15,12 +15,13 @@
 }
 program Test;
 
-{$APPTYPE CONSOLE}
-
-{$R *.res}
+(*
+*)
+{$linklib libbson}
+{$linklib mongoc}
 
 uses
-  System.SysUtils,
+  SysUtils,
   Variants,
   MongoBson, MongoDB, GridFS;
 

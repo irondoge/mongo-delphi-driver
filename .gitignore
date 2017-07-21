@@ -1,10 +1,5 @@
-Win32/
-Win64/
-__history
-MongoDelphiDriver.dproj.local
-MongoDelphiDriver.identcache
-Test.dproj.local
-Test.identcache
-MongoDelphiDriver_prjgroup.tvsconfig
-AddressBook.dproj.local
-AddressBook.identcache
+*.o
+*.ppu
+*.res
+Test
+mongo-c-driver-master
