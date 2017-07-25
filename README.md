@@ -8,8 +8,6 @@ The project obviously depends on the same [mongo-c-driver](https://github.com/mo
 
 ## Building steps
 
-* `unzip mongo-c-driver.zip`
-* `cd mongo-c-driver-master`
-* `cp src/env.c src/env_posix.c`
-* `cp src/env.c src/env_standard.c`
-* `make ALL_CFLAGS="-D_POSIX_C_SOURCE=200112L"`
+```bash
+$ make
+```

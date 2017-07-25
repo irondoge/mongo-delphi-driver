@@ -16,9 +16,10 @@
 program Test;
 
 (*
+{$linklib bson}
 *)
-{$linklib libbson}
 {$linklib mongoc}
+{$linklib c}
 
 uses
   SysUtils,
