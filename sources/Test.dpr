@@ -317,7 +317,7 @@ begin
       b.display();
 
       gfs := TGridFS.Create(mongo, 'grid');
-      WriteLn('Store test.exe = ', gfs.storeFile('test.exe'));
+      WriteLn('Store test = ', gfs.storeFile('test'));
 
       WriteLn('Store bin = ', gfs.store(bin.data, bin.len, 'bin'));
 
@@ -343,14 +343,14 @@ begin
       gf.read(@j, sizeof(j));
       WriteLn(j);
 
-      gf := gfs.find('test.exe');
+      gf := gfs.find('test');
       cursor := gf.getChunks(1, 5);
       while cursor.next() do
         Writeln(cursor.value.size());
 
       WriteLn(gf.seek(100000));
 
-      gfs.storeFile('../../MongoDB.pas', 'MongoDB.pas');
+      gfs.storeFile('sources/MongoDB.pas', 'MongoDB.pas');
       gf := gfs.find('MongoDB.pas');
       gf.seek(100);
       gf.read(@buf, 20);
@@ -360,6 +360,7 @@ begin
       ExtractFile(gfs, 'MongoDB.pas');
       WriteLn('Done');
       ReadLn;
+      DeleteFile('MongoDB.pas');
     end
       else
         WriteLn('No Connection, Err = ', mongo.getErr());

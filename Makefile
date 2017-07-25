@@ -40,9 +40,11 @@ $(DEPDIR)/src/env_posix.c: $(DEPDIR)/src/env.c
 
 $(OUTDIR)/%.ppu: $(SRCDIR)/%.pas
 		$(FPC) -o$(OUTDIR)/ $(FPFLAGS) $<
+		@printf "=== $* BUILD COMPLETE ===\n"
 
 $(TESTNAME):	$(TESTSRC) | all
 		$(FPC) -o$(OUTDIR)/$@ $(FPFLAGS) $^ $(LDFLAGS) $(LDLIBS)
+		@printf "=== $(OUTDIR)/$@ BUILD COMPLETE ===\n\n"
 
 ## run rules
 check:		$(TESTNAME)
