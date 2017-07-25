@@ -17,6 +17,7 @@ SRC :=		$(wildcard $(SRCDIR)/*.pas)
 OBJ :=		$(patsubst $(SRCDIR)/%.pas,$(OUTDIR)/%.o,$(SRC))
 UNITS :=	$(OBJ:.o=.ppu)
 ## test binary options
+TESTNAME :=	test
 TESTSRC :=	$(wildcard $(TESTDIR)/*.dpr)
 TESTOBJ :=	$(patsubst $(TESTDIR)/%.dpr,$(OUTDIR)/%.o,$(TESTSRC))
 ## dependencies options
@@ -38,10 +39,14 @@ $(DEPDIR)/src/env_posix.c: $(DEPDIR)/src/env.c
 		cp $< $@
 
 $(OUTDIR)/%.ppu: $(SRCDIR)/%.pas
-		$(FPC) -o$(OUTDIR)/$@ $(FPFLAGS) $<
+		$(FPC) -o$(OUTDIR)/ $(FPFLAGS) $<
 
-test:		all $(TESTSRC)
+$(TESTNAME):	$(TESTSRC) | all
 		$(FPC) -o$(OUTDIR)/$@ $(FPFLAGS) $^ $(LDFLAGS) $(LDLIBS)
+
+## run rules
+check:		$(TESTNAME)
+		@./$<
 
 ## clean rules
 RM :=		@$(RM) -v
@@ -59,6 +64,8 @@ distclean:	clean
 re:		mostlyclean all
 
 ## misc rules
-.PHONY:		all deps re test
+.PHONY:		all deps re \
+		mostlyclean clean distclean \
+		check
 
 get-%:;		$($*)

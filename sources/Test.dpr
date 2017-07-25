@@ -15,9 +15,6 @@
 }
 program Test;
 
-(*
-{$linklib bson}
-*)
 {$linklib mongoc}
 {$linklib c}
 
@@ -45,6 +42,7 @@ var
   buf : array[0..100] of AnsiChar;
   ia1 : array[0..4] of Integer;
   ia2 : TIntegerArray;
+  ds : String;
 
 const
   db = 'test';
@@ -105,7 +103,8 @@ begin
     bb.append('age', 35);
     bb.append('long', Int64(89));
     bb.append('bool', True);
-    bb.append('date', StrToDate('1/3/1970'));
+    ds := DefaultFormatSettings.DateSeparator;
+    bb.append('date', StrToDate('1' + ds + '3' + ds + '1970'));
     bb.startObject('object');
     bb.append('sub1', 'sub1');
     bb.append('sub2', False);
